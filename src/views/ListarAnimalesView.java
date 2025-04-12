@@ -1,26 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package views;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author franc
- */
+
 public class ListarAnimalesView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ListarAnimalesView
-     */
+    
     public ListarAnimalesView() {
         initComponents();
         listarAnimales();
     }
-    private void listarAnimales(){
+    public void listarAnimales(){
         ArrayList<AnimalViewModel> animales = Controlador.getAnimales();
         animalesGrid.setModel(new DefaultTableModel(new Object[][] {}, 
             new String[] { "Especie", "Edad", "Peso", "Sector", "Comida Fija", "Por. Peso" }));
@@ -167,6 +159,10 @@ public class ListarAnimalesView extends javax.swing.JFrame {
          totalCarnivoros.setText(String.format("Total Carnívoros: %.2f%n Kgs.", comida.getCarnivoros()));
          totalAlimentos.setText(String.format("%.2f%n Kgs.", comida.getTotal()));
     }//GEN-LAST:event_calcularComidaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
