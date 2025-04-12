@@ -35,10 +35,9 @@ public class AgregarAnimalView extends javax.swing.JFrame {
         }
         
         ArrayList<Sector> sectores = Controlador.getSectores();
-        
-        for(Sector sector : sectores){
-            cbsector.addItem(String.valueOf(sector.getNumero()));
-        }
+for(Sector sector : sectores){
+    cbsector.addItem(sector.toString());
+}
         
         ArrayList<Pais> paises = Controlador.getPaises();
         
@@ -64,11 +63,15 @@ public class AgregarAnimalView extends javax.swing.JFrame {
     }
     
     public Sector getSector(){
-    int numeroSector = Integer.parseInt(String.valueOf(cbsector.getSelectedItem()));
+    String sectorTexto = String.valueOf(cbsector.getSelectedItem());
+    // Extraer el número del sector del formato "Sector N°: X [TIPO]"
+    String numeroStr = sectorTexto.split(":")[1].trim().split("\\[")[0].trim();
+    int numeroSector = Integer.parseInt(numeroStr);
+    
     for (Sector sector : Controlador.getSectores()){
-         if (numeroSector == sector.getNumero()){
-             return sector;
-         }
+        if (numeroSector == sector.getNumero()){
+            return sector;
+        }
     }
     return null;
 }
@@ -182,15 +185,6 @@ public class AgregarAnimalView extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cbespecie, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbsector, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbpais, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,12 +192,14 @@ public class AgregarAnimalView extends javax.swing.JFrame {
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(15, 15, 15)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(edad, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(edad, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addGap(8, 8, 8)
                                                 .addComponent(peso, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -221,6 +217,13 @@ public class AgregarAnimalView extends javax.swing.JFrame {
                         .addComponent(cbalimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cbpais, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbespecie, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbsector, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
